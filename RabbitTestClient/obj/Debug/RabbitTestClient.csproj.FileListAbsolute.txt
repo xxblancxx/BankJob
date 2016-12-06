@@ -1,0 +1,8 @@
+D:\Projects\BankJob\RabbitTestClient\bin\Debug\RabbitTestClient.exe.config
+D:\Projects\BankJob\RabbitTestClient\bin\Debug\RabbitTestClient.exe
+D:\Projects\BankJob\RabbitTestClient\bin\Debug\RabbitTestClient.pdb
+D:\Projects\BankJob\RabbitTestClient\bin\Debug\RabbitMQ.Client.dll
+D:\Projects\BankJob\RabbitTestClient\bin\Debug\RabbitMQ.Client.xml
+D:\Projects\BankJob\RabbitTestClient\obj\Debug\RabbitTestClient.csprojResolveAssemblyReference.cache
+D:\Projects\BankJob\RabbitTestClient\obj\Debug\RabbitTestClient.exe
+D:\Projects\BankJob\RabbitTestClient\obj\Debug\RabbitTestClient.pdb
