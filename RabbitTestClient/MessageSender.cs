@@ -17,9 +17,6 @@ namespace RabbitTestClient
             var factory = new ConnectionFactory() { HostName = hostName };
             factory.UserName = "guest";
             factory.Password = "guest";
-            // var factory = new ConnectionFactory() { HostName = "46.101.165.65" };
-            //factory.UserName = "ferryhundige";
-            //factory.Password = "Hunndi4000!";
 
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
@@ -32,7 +29,5 @@ namespace RabbitTestClient
                     body: encodedMessageBody);
             }
         }
-
-
     }
 }

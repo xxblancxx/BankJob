@@ -20,21 +20,23 @@ namespace HunndiBankInc
             }
         }
 
-        //public static LoanResponse GetXMLFromLoanRequest(string requestResponse)
-        //{
-        //    var serializer = new System.Xml.Serialization.XmlSerializer(typeof(LoanResponse));
-        //    string xml = "";
+        public static string GetXMLFromLoanResponse(LoanResponse response)
+        {
 
-        //    using (var sww = new StringWriter())
-        //    {
-        //        using (XmlWriter writer = XmlWriter.Create(sww))
-        //        {
-        //            serializer.Serialize(writer, requestResponse);
-        //            xml = sww.ToString(); // Your XML
+            var serializer = new System.Xml.Serialization.XmlSerializer(typeof(LoanResponse));
+            string xml = "";
 
-        //            return xml;
-        //        }
-        //    }
-        //}
+            using (var sww = new StringWriter())
+            {
+                using (XmlWriter writer = XmlWriter.Create(sww))
+                {
+                    serializer.Serialize(writer, response);
+                    xml = sww.ToString(); // Your XML
+
+                    return xml;
+                }
+            }
+        }
+  
     }
 }

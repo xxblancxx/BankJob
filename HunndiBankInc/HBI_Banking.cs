@@ -12,8 +12,8 @@ namespace HunndiBankInc
         static void Main(string[] args)
         {
 
-            HBI_MessageReceiver.GetMessage("datdb.cphbusiness.dk", "HBITestExchange", "HBITestQue");
-
+            HBI_MessageReceiver.GetMessages("datdb.cphbusiness.dk", "HBITestQue");
+           
         }
     }
 }

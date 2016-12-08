@@ -7,9 +7,9 @@ using RabbitMQ.Client;
 
 namespace HunndiBankInc
 {
-    class HBI_MessageSender
+    public class HBI_MessageSender
     {
-        public static void SendMessage(string _host, string _exchange, Byte[] encodedMessageBody)
+        public static void SendMessage(string replyTo, string _host, Byte[] encodedMessageBody)
         {
             var factory = new ConnectionFactory() { HostName = _host };
             factory.UserName = "guest";
@@ -18,15 +18,14 @@ namespace HunndiBankInc
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
-                var props = channel.CreateBasicProperties();
-                props.ReplyTo = ""; 
-                channel.BasicPublish(exchange: _exchange,
-                    routingKey: "",
-                    basicProperties: props,
-                    body: encodedMessageBody);
+                channel.QueueDeclare(replyTo, true, false, false, null);
+
+                channel.BasicPublish(exchange: "",
+                                routingKey: replyTo, 
+                                basicProperties: null,
+                                body: encodedMessageBody);
             }
         }
-
 
     }
 }
