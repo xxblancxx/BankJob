@@ -11,18 +11,13 @@ namespace RabbitTestClient
     {
         static void Main(string[] args)
         {
-            //var encodedMessage = UTF8Encoding.UTF8.GetBytes(XMLConverter.GetXMLFromLoanRequest(new LoanRequest(12121992, 800, 10000, new DateTime(1973, 01, 01))));
             Console.WriteLine("Click to send message");
-            //Console.ReadKey();
-
-            //var encodedMessage = UTF8Encoding.UTF8.GetBytes(XMLConverter.GetXMLFromLoanRequest(new LoanRequest(12121992, 800, 10000, DateTime.Now)));
-            //MessageSender.SendMessage("datdb.cphbusiness.dk", "HBITestExchange", encodedMessage);
-            //Console.WriteLine("Message sent succesfully, press to send second");
 
             while (true)
             {
+                var pressedKey = Console.ReadKey(true);
 
-                if (Console.ReadKey(true).Key != ConsoleKey.Escape)
+                if ( pressedKey.Key != ConsoleKey.Escape)
                 {
                     var encodedMessage = UTF8Encoding.UTF8.GetBytes(XMLConverter.GetXMLFromLoanRequest(new LoanRequest(12121992, 800, 10000, DateTime.Now)));
                     MessageSender.SendMessage("datdb.cphbusiness.dk", "HBITestExchange", encodedMessage);
@@ -32,14 +27,7 @@ namespace RabbitTestClient
             }
 
 
-            //Console.ReadKey();
 
-            //encodedMessage = UTF8Encoding.UTF8.GetBytes(XMLConverter.GetXMLFromLoanRequest(new LoanRequest(22587946, 800, 92546, DateTime.Now)));
-
-            //MessageSender.SendMessage("datdb.cphbusiness.dk", "HBITestExchange", encodedMessage);
-
-            //Console.WriteLine("Message sent succesfully");
-            //Console.ReadKey();
 
         }
     }

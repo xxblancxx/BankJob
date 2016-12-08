@@ -14,3 +14,11 @@ C:\Users\Casper Bærbar\Desktop\BankJob-master\BankJob-master\HunndiBankInc\bin\
 C:\Users\Casper Bærbar\Desktop\BankJob-master\BankJob-master\HunndiBankInc\bin\Debug\RabbitMQ.Client.dll
 C:\Users\Casper Bærbar\Desktop\BankJob-master\BankJob-master\HunndiBankInc\bin\Debug\RabbitMQ.Client.xml
 C:\Users\Casper Bærbar\Desktop\BankJob-master\BankJob-master\HunndiBankInc\obj\Debug\HunndiBankInc.csprojResolveAssemblyReference.cache
+D:\Projects\BankJob\HunndiBankInc\bin\Debug\HunndiBankInc.exe.config
+D:\Projects\BankJob\HunndiBankInc\obj\Debug\HunndiBankInc.exe
+D:\Projects\BankJob\HunndiBankInc\obj\Debug\HunndiBankInc.pdb
+D:\Projects\BankJob\HunndiBankInc\bin\Debug\HunndiBankInc.exe
+D:\Projects\BankJob\HunndiBankInc\bin\Debug\HunndiBankInc.pdb
+D:\Projects\BankJob\HunndiBankInc\bin\Debug\RabbitMQ.Client.dll
+D:\Projects\BankJob\HunndiBankInc\bin\Debug\RabbitMQ.Client.xml
+D:\Projects\BankJob\HunndiBankInc\obj\Debug\HunndiBankInc.csprojResolveAssemblyReference.cache
