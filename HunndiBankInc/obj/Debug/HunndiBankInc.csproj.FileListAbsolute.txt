@@ -1,0 +1,16 @@
+H:\Downloads\BankJob-master\BankJob-master\HunndiBankInc\bin\Debug\HunndiBankInc.exe.config
+H:\Downloads\BankJob-master\BankJob-master\HunndiBankInc\bin\Debug\HunndiBankInc.exe
+H:\Downloads\BankJob-master\BankJob-master\HunndiBankInc\bin\Debug\HunndiBankInc.pdb
+H:\Downloads\BankJob-master\BankJob-master\HunndiBankInc\bin\Debug\RabbitMQ.Client.dll
+H:\Downloads\BankJob-master\BankJob-master\HunndiBankInc\bin\Debug\RabbitMQ.Client.xml
+H:\Downloads\BankJob-master\BankJob-master\HunndiBankInc\obj\Debug\HunndiBankInc.csprojResolveAssemblyReference.cache
+H:\Downloads\BankJob-master\BankJob-master\HunndiBankInc\obj\Debug\HunndiBankInc.exe
+H:\Downloads\BankJob-master\BankJob-master\HunndiBankInc\obj\Debug\HunndiBankInc.pdb
+C:\Users\Casper Bærbar\Desktop\BankJob-master\BankJob-master\HunndiBankInc\bin\Debug\HunndiBankInc.exe.config
+C:\Users\Casper Bærbar\Desktop\BankJob-master\BankJob-master\HunndiBankInc\obj\Debug\HunndiBankInc.exe
+C:\Users\Casper Bærbar\Desktop\BankJob-master\BankJob-master\HunndiBankInc\obj\Debug\HunndiBankInc.pdb
+C:\Users\Casper Bærbar\Desktop\BankJob-master\BankJob-master\HunndiBankInc\bin\Debug\HunndiBankInc.exe
+C:\Users\Casper Bærbar\Desktop\BankJob-master\BankJob-master\HunndiBankInc\bin\Debug\HunndiBankInc.pdb
+C:\Users\Casper Bærbar\Desktop\BankJob-master\BankJob-master\HunndiBankInc\bin\Debug\RabbitMQ.Client.dll
+C:\Users\Casper Bærbar\Desktop\BankJob-master\BankJob-master\HunndiBankInc\bin\Debug\RabbitMQ.Client.xml
+C:\Users\Casper Bærbar\Desktop\BankJob-master\BankJob-master\HunndiBankInc\obj\Debug\HunndiBankInc.csprojResolveAssemblyReference.cache

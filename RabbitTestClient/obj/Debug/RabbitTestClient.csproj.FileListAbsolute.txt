@@ -6,3 +6,19 @@ D:\Projects\BankJob\RabbitTestClient\bin\Debug\RabbitMQ.Client.xml
 D:\Projects\BankJob\RabbitTestClient\obj\Debug\RabbitTestClient.csprojResolveAssemblyReference.cache
 D:\Projects\BankJob\RabbitTestClient\obj\Debug\RabbitTestClient.exe
 D:\Projects\BankJob\RabbitTestClient\obj\Debug\RabbitTestClient.pdb
+H:\Downloads\BankJob-master\BankJob-master\RabbitTestClient\bin\Debug\RabbitTestClient.exe.config
+H:\Downloads\BankJob-master\BankJob-master\RabbitTestClient\obj\Debug\RabbitTestClient.exe
+H:\Downloads\BankJob-master\BankJob-master\RabbitTestClient\obj\Debug\RabbitTestClient.pdb
+H:\Downloads\BankJob-master\BankJob-master\RabbitTestClient\bin\Debug\RabbitTestClient.exe
+H:\Downloads\BankJob-master\BankJob-master\RabbitTestClient\bin\Debug\RabbitTestClient.pdb
+H:\Downloads\BankJob-master\BankJob-master\RabbitTestClient\bin\Debug\RabbitMQ.Client.dll
+H:\Downloads\BankJob-master\BankJob-master\RabbitTestClient\bin\Debug\RabbitMQ.Client.xml
+H:\Downloads\BankJob-master\BankJob-master\RabbitTestClient\obj\Debug\RabbitTestClient.csprojResolveAssemblyReference.cache
+C:\Users\Casper Bærbar\Desktop\BankJob-master\BankJob-master\RabbitTestClient\bin\Debug\RabbitTestClient.exe.config
+C:\Users\Casper Bærbar\Desktop\BankJob-master\BankJob-master\RabbitTestClient\obj\Debug\RabbitTestClient.exe
+C:\Users\Casper Bærbar\Desktop\BankJob-master\BankJob-master\RabbitTestClient\obj\Debug\RabbitTestClient.pdb
+C:\Users\Casper Bærbar\Desktop\BankJob-master\BankJob-master\RabbitTestClient\bin\Debug\RabbitTestClient.exe
+C:\Users\Casper Bærbar\Desktop\BankJob-master\BankJob-master\RabbitTestClient\bin\Debug\RabbitTestClient.pdb
+C:\Users\Casper Bærbar\Desktop\BankJob-master\BankJob-master\RabbitTestClient\bin\Debug\RabbitMQ.Client.dll
+C:\Users\Casper Bærbar\Desktop\BankJob-master\BankJob-master\RabbitTestClient\bin\Debug\RabbitMQ.Client.xml
+C:\Users\Casper Bærbar\Desktop\BankJob-master\BankJob-master\RabbitTestClient\obj\Debug\RabbitTestClient.csprojResolveAssemblyReference.cache
