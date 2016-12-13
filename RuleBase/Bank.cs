@@ -5,13 +5,87 @@ using System.Web;
 
 namespace RuleBase
 {
+    [Serializable]
     public class Bank
     {
+        private string _exchange;
         public int MinimumCreditscore { get; set; }
+        public int MaximumCreditscore { get; set; }
+        public double MaximumAmount { get; set; }
         public bool AllowsRKI { get; set; }
-        public string Channel { get; set; }
+        public string Host { get; set; }
+        public bool UsesMessaging { get; set; } // Otherwise its webservice
+        public string Exchange
+        {
+            get
+            {
+                if (UsesMessaging)
+                {
+                    return _exchange;
+                }
+                else
+                {
+                    throw new ArgumentNullException("Only banks using AMQP Messaging has an exchange!");
+                }
+            }
+            set
+            {
+                _exchange = value;
+            }
+        }
 
 
+        public Bank(int minimumCreditscore, double maxLoan, bool allowsRKI, string host)
+        {
+            // This is webservice bank.
+            UsesMessaging = false;
 
+            MinimumCreditscore = minimumCreditscore;
+            MaximumCreditscore = 800;
+            MaximumAmount = maxLoan;
+            AllowsRKI = allowsRKI;
+            Host = host;
+        }
+
+        public Bank(int minimumCreditscore, double maxLoan, bool allowsRKI, string host, string exchange)
+        {
+            // This is RabbitMQ bank.
+            UsesMessaging = true;
+
+            MinimumCreditscore = minimumCreditscore;
+            MaximumCreditscore = 800;
+            MaximumAmount = maxLoan;
+            AllowsRKI = allowsRKI;
+            Host = host;
+            Exchange = exchange;
+        }
+        public Bank(int minimumCreditscore, int maximumCreditscore, double maxLoan, bool allowsRKI, string host)
+        {
+            // This is webservice bank.
+            UsesMessaging = false;
+
+            MinimumCreditscore = minimumCreditscore;
+            MaximumCreditscore = maximumCreditscore;
+            MaximumAmount = maxLoan;
+            AllowsRKI = allowsRKI;
+            Host = host;
+        }
+
+        public Bank(int minimumCreditscore,int maximumCreditscore, double maxLoan, bool allowsRKI, string host, string exchange)
+        {
+            // This is RabbitMQ bank.
+            UsesMessaging = true;
+
+            MinimumCreditscore = minimumCreditscore;
+            MaximumCreditscore = maximumCreditscore;
+            MaximumAmount = maxLoan;
+            AllowsRKI = allowsRKI;
+            Host = host;
+            Exchange = exchange;
+        }
+        public Bank()
+        {
+
+        }
     }
 }

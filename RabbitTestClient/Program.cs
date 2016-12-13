@@ -20,7 +20,7 @@ namespace RabbitTestClient
                 if (pressedKey.Key != ConsoleKey.Escape)
                 {
                     var encodedMessage = UTF8Encoding.UTF8.GetBytes(XMLConverter.GetXMLFromLoanRequest(new LoanRequest(12121992, 257, 10000, new DateTime(1970, 05, 05))));
-                    MessageSender.SendMessage("datdb.cphbusiness.dk", "HBITestExchange", encodedMessage);
+                    MessageSender.SendMessage("datdb.cphbusiness.dk", "HBITestExchange","Hundige_TestQueue", encodedMessage);
                     Console.WriteLine("Message sent succesfully, press to send second");
                 }
 

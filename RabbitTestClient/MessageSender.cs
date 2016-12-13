@@ -12,7 +12,7 @@ namespace RabbitTestClient
 {
     public class MessageSender
     {
-        public static void SendMessage(string hostName, string exchange, Byte[] encodedMessageBody)
+        public static void SendMessage(string hostName, string exchange,string replyto, Byte[] encodedMessageBody)
         {
             var factory = new ConnectionFactory() { HostName = hostName };
             factory.UserName = "guest";
@@ -22,7 +22,7 @@ namespace RabbitTestClient
             using (var channel = connection.CreateModel())
             {
                 var props = channel.CreateBasicProperties();
-                props.ReplyTo = "Hundige_Queue";
+                props.ReplyTo = replyto;
                 channel.BasicPublish(exchange: exchange,
                     routingKey: "",
                     basicProperties: props,
