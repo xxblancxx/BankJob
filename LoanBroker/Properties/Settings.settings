@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LoanBroker.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LoanBroker_CreditBureau_CreditScoreService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://139.59.154.97:8080/CreditScoreService/CreditScoreService</Value>
+    </Setting>
+    <Setting Name="LoanBroker_RuleBase_RuleBase" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:52713/RuleBase.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

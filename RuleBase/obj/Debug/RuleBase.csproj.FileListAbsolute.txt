@@ -28,6 +28,6 @@ D:\Projects\BankJob\RuleBase\bin\Microsoft.AI.Web.xml
 D:\Projects\BankJob\RuleBase\bin\Microsoft.AI.WindowsServer.xml
 D:\Projects\BankJob\RuleBase\bin\Microsoft.ApplicationInsights.xml
 D:\Projects\BankJob\RuleBase\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Projects\BankJob\RuleBase\obj\Debug\RuleBase.csprojResolveAssemblyReference.cache
 D:\Projects\BankJob\RuleBase\obj\Debug\RuleBase.dll
 D:\Projects\BankJob\RuleBase\obj\Debug\RuleBase.pdb
+D:\Projects\BankJob\RuleBase\obj\Debug\RuleBase.csprojResolveAssemblyReference.cache
