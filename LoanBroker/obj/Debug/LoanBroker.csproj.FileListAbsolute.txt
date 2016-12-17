@@ -39,3 +39,4 @@ D:\Projects\BankJob\LoanBroker\bin\System.Net.Http.Primitives.dll
 D:\Projects\BankJob\LoanBroker\bin\System.Net.Http.Extensions.xml
 D:\Projects\BankJob\LoanBroker\bin\System.Net.Http.Primitives.xml
 D:\Projects\BankJob\LoanBroker\obj\Debug\LoanBroker.csproj.App.config
+D:\Projects\BankJob\LoanBroker\obj\Debug\LoanBroker.csprojResolveAssemblyReference.cache

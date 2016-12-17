@@ -49,7 +49,7 @@ namespace LoanBroker
             {
                 if (bank.UsesMessaging)
                 { // Use AMQP Messaging protocol (RabbitMQ broker)
-                   // MessageReciever.Recieve(recievedResponses, bank.Host, ssn);
+                                     
                     if (bank.Exchange.Contains("XML"))
                     { // XML Translator is used
                         var encodedMessage = UTF8Encoding.UTF8.GetBytes(XMLConverter.GetXMLFromLoanRequest(request));
@@ -60,14 +60,19 @@ namespace LoanBroker
                         //var encodedMessage = UTF8Encoding.UTF8.GetBytes(JSONConverter.GetJSONFromRequest(request));
                         //MessageSender.SendMessage(bank.Host, bank.Exchange, ssn.ToString(), encodedMessage);
                     }
+
+                    MessageReciever.Recieve(recievedResponses, bank.Host, ssn);
                 }
                 else
                 { // Use soap
                     var myResponse = DynamicSoapRequestHandler.SendSoapMessage(bank.Host, "RequestLoan", request).Result;
                     recievedResponses.Add(myResponse);
                 }
+
+               
+
             }
-            if (recipientList[0].Exchange!= null)
+            if (recipientList[0].Exchange != null)
             {
                 return recipientList[0].Exchange;
             }
@@ -75,7 +80,7 @@ namespace LoanBroker
             {
                 return recipientList[0].Host;
             }
-            
+
         }
     }
 }
