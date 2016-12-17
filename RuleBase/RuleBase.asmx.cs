@@ -24,20 +24,27 @@ namespace RuleBase
             allBanks.Add(new Bank(500,999999999,new DateTime(3000,01,01), false, "datdb.cphbusiness.dk", "cphbusiness.bankXML"));
             allBanks.Add(new Bank(500,999999999, new DateTime(3000, 01, 01), false, "datdb.cphbusiness.dk", "cphbusiness.bankJSON"));
             allBanks.Add(new Bank(0,499, new DateTime(1971, 01, 01), 50000, true, "datdb.cphbusiness.dk", "Hunndi.BankXML"));
-            allBanks.Add(new Bank(0, 499, new DateTime(1971, 01, 01), 50000, true, "http://localhost:50959/WebService.asmx/"));
+            allBanks.Add(new Bank(0, 499, new DateTime(1971, 01, 01), 100000, true, "http://localhost:50959/WebService.asmx/"));
 
             var suitableBanks = new List<Bank>();
             foreach (var bank in allBanks)
             {
-                // Creditscore should always be more than minimal.
-                // Either banks allow RKI - or if they dont, customer cannot be in RKI.
-                if (creditscore >= bank.MinimumCreditscore && creditscore <= bank.MaximumCreditscore && ( bank.AllowsRKI ||(bank.AllowsRKI == false && isInRKI == false)))
+                //Creditscore should always be more than minimal.
+                //Either banks allow RKI -or if they dont, customer cannot be in RKI.
+                if (creditscore >= bank.MinimumCreditscore && creditscore <= bank.MaximumCreditscore && (bank.AllowsRKI || (bank.AllowsRKI == false && isInRKI == false)))
                 {
                     if (amount <= bank.MaximumAmount)
                     {
                         suitableBanks.Add(bank);
                     }
                 }
+
+
+                // Below was used to test only Webservice type bank.
+                //if (bank.UsesMessaging == false)
+                //{
+                //    suitableBanks.Add(bank);
+                //}
             }
 
             return suitableBanks;

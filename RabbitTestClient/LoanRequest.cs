@@ -8,7 +8,7 @@ namespace RabbitTestClient
     [Serializable]
     public class LoanRequest
     {
-        public int ssn;
+        public string ssn;
         public int creditScore;
         public double loanAmount;
         public string loanDuration; // duration = time betwen 01-01-1970 and this field.
@@ -17,7 +17,7 @@ namespace RabbitTestClient
         {
 
         }
-        public LoanRequest(int ssn, int creditScore, double loanAmount, DateTime loanDuration)
+        public LoanRequest(string ssn, int creditScore, double loanAmount, DateTime loanDuration)
         {
             this.ssn = ssn;
             this.creditScore = creditScore;

@@ -21,4 +21,3 @@ D:\Projects\BankJob\HunndiBankInc\bin\Debug\HunndiBankInc.exe
 D:\Projects\BankJob\HunndiBankInc\bin\Debug\HunndiBankInc.pdb
 D:\Projects\BankJob\HunndiBankInc\bin\Debug\RabbitMQ.Client.dll
 D:\Projects\BankJob\HunndiBankInc\bin\Debug\RabbitMQ.Client.xml
-D:\Projects\BankJob\HunndiBankInc\obj\Debug\HunndiBankInc.csprojResolveAssemblyReference.cache

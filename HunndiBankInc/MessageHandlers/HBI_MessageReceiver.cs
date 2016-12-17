@@ -36,7 +36,7 @@ namespace HunndiBankInc
                     receviedRequest = HBI_XMLConverter.GetRequestFromXML(message);
                    
                     Console.WriteLine(message);
-                    var encodedResponse = HBI_XMLConverter.GetXMLFromLoanResponse(new LoanResponse(receviedRequest.ssn, HBI_MakeLoan.CalculateCreditscore(receviedRequest)));
+                    var encodedResponse = HBI_XMLConverter.GetXMLFromLoanResponse(new LoanResponse(receviedRequest.ssn, HBI_MakeLoan.CalculateInterestRate(receviedRequest)));
                     HBI_MessageSender.SendMessage(ea.BasicProperties.ReplyTo, _host, UTF8Encoding.UTF8.GetBytes(encodedResponse));
                 };
 

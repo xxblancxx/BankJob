@@ -9,17 +9,17 @@ namespace HunndiBankInc
     [Serializable]
     public class LoanResponse
     {
-        public int ssn;
+        public string ssn;
         public double intRate;
 
         public LoanResponse()
         {
 
         }
-        public LoanResponse(int _ssn, double _intRate)
+        public LoanResponse(string ssn, double intRate)
         {
-            this.ssn = _ssn;
-            this.intRate = _intRate;
+            this.ssn = ssn;
+            this.intRate = intRate;
         }
     }
 }

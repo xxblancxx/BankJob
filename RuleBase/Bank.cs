@@ -26,7 +26,7 @@ namespace RuleBase
                 }
                 else
                 {
-                    throw new ArgumentNullException("Only banks using AMQP Messaging has an exchange!");
+                    return null;
                 }
             }
             set

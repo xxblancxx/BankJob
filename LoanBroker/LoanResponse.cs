@@ -10,17 +10,17 @@ namespace StealYourBikeBank
     public class LoanResponse
     {
 
-        public int Ssn { get; set; }
-        public double IntRate { get; set; }
+        public string ssn;
+        public double intRate;
 
         public LoanResponse()
         {
 
         }
-        public LoanResponse(int ssn, double intRate)
+        public LoanResponse(string ssn, double intRate)
         {
-            Ssn = ssn;
-            IntRate = intRate;
+            this.ssn = ssn;
+            this.intRate = intRate;
         }
     }
 }

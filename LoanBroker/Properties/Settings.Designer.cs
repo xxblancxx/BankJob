@@ -26,20 +26,20 @@ namespace LoanBroker.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://139.59.154.97:8080/CreditScoreService/CreditScoreService")]
-        public string LoanBroker_CreditBureau_CreditScoreService {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:52713/RuleBase.asmx")]
+        public string LoanBroker_RuleBase_RuleBase {
             get {
-                return ((string)(this["LoanBroker_CreditBureau_CreditScoreService"]));
+                return ((string)(this["LoanBroker_RuleBase_RuleBase"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:52713/RuleBase.asmx")]
-        public string LoanBroker_RuleBase_RuleBase {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://139.59.154.97:8080/CreditScoreService/CreditScoreService")]
+        public string LoanBroker_CreditBureau_CreditScoreService {
             get {
-                return ((string)(this["LoanBroker_RuleBase_RuleBase"]));
+                return ((string)(this["LoanBroker_CreditBureau_CreditScoreService"]));
             }
         }
     }

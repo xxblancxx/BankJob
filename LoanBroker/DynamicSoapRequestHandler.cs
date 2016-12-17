@@ -3,54 +3,43 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Web;
+using System.Xml;
+using System.Threading.Tasks;
 
 namespace LoanBroker
 {
     public class DynamicSoapRequestHandler
     {
-
-        public static void SendRequestSoap(string url, string method, string xmlPayload)
+        public static async Task<string> SendSoapMessage(string url, string method, LoanRequest request)
         {
-            //string result = "";
-            string URL_ADDRESS = url + method+ "&o=POST";  //TODO: customize to your needs
-
-
-            // Create the web request
-            HttpWebRequest request = WebRequest.Create(new Uri(URL_ADDRESS)) as HttpWebRequest;
-
-            // Set type to POST
-            request.Method = "POST";
-            request.ContentType = "application/xml";
-
-            // Create the data we want to send
-            StringBuilder data = new StringBuilder();
-            data.Append(xmlPayload);
-            byte[] byteData = Encoding.UTF8.GetBytes(data.ToString());      // Create a byte array of the data we want to send
-            request.ContentLength = byteData.Length;                        // Set the content length in the request headers
-
-            // Write data to request
-            using (Stream postStream = request.GetRequestStream())
+            HttpClientHandler handler = new HttpClientHandler();
+            //Creates a new HttpClientHandler.
+            handler.UseDefaultCredentials = true;
+            //true if the default credentials are used; otherwise false. will use authentication credentials from the logged on user on your pc.
+            using (HttpClient client = new HttpClient(handler))
             {
-                postStream.Write(byteData, 0, byteData.Length);
-            }
+                client.BaseAddress = new Uri(url);
+                var values = new Dictionary<string, string>
+                     {
+                    { "ssn", request.ssn},
+                    { "creditScore",request.creditScore.ToString() },
+                    { "loanAmount", request.loanAmount.ToString()},
+                    { "loanDuration", request.loanDuration}
+                     };
 
-            //// Get response and return it
-            //try
-            //{
-            //    using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-            //    {
-            //        StreamReader reader = new StreamReader(response.GetResponseStream());
-            //        result = reader.ReadToEnd();
-            //        reader.Close();
-            //    }
-            //}
-            //catch (Exception e)
-            //{
-            //    result = e.Message;  //TODO: returns an XML with the error message
-            //}
-            //return result;
+
+                var content = new FormUrlEncodedContent(values);
+                var response = await client.PostAsync(method,content).ConfigureAwait(continueOnCapturedContext: false); ;
+
+                response.EnsureSuccessStatusCode();
+                var responseString = await response.Content.ReadAsStringAsync();
+
+                return responseString;
+            }
         }
+
     }
 }

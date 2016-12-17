@@ -18,15 +18,11 @@ namespace StealYourBikeBank
     {
 
         [WebMethod]
-        public LoanResponse RequestLoan(int ssn, int creditScore, double loanAmount, DateTime loanDuration)
+        public LoanResponse RequestLoan(string ssn, int creditScore, double loanAmount, string loanDuration)
         {
+            
 
-            //public int ssn;
-            //public int creditScore;
-            //public double loanAmount;
-            //public string loanDuration;
-
-            var interestRate = LoanCalculator.CalculateCreditscore(creditScore,loanAmount,loanDuration);
+            var interestRate = LoanCalculator.CalculateCreditscore(creditScore, loanAmount, loanDuration);
             var response = new LoanResponse(ssn, interestRate);
             return response;
         }

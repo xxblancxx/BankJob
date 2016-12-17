@@ -21,15 +21,27 @@ namespace LoanBroker
     {
 
         [WebMethod]
-        public string RequestLoan(int ssn, bool isInRKI, double loanAmount, int loanDurationInDays)
+        public string RequestLoan(string ssn, bool isInRKI, double loanAmount, int loanDurationInDays)
         {
+            List<string> recievedResponses = new List<string>();
+
             DateTime loanDuration = new DateTime(1970, 01, 01, 01, 00, 00);
             loanDuration.AddDays(loanDurationInDays);
-            var creditBureau = new CreditBureau.CreditScoreService();
-            int creditScore = creditBureau.creditScore(ssn.ToString());
 
+            // Get Creditscore from webservice
+            var creditBureau = new CreditBureau.CreditScoreService();
+            int creditScore = creditBureau.creditScore(ssn);
+
+            // Creditscore always returns -1, so we implemented the below piece for test purposes
+            //__________Below Code is just for test purpose____________________________________
+            Random r = new Random();
+            creditScore = r.Next(1, 800);
+            //__________Above Code is just for test purpose____________________________________
+
+            // Get Banks from rulebase
             var rulebase = new RuleBase.RuleBase();
             var recipientList = rulebase.GetBanks(creditScore, isInRKI, loanAmount, loanDuration).ToList();
+
             var request = new LoanRequest(ssn, creditScore, loanAmount, loanDuration);
 
             // Translate and send.
@@ -37,25 +49,33 @@ namespace LoanBroker
             {
                 if (bank.UsesMessaging)
                 { // Use AMQP Messaging protocol (RabbitMQ broker)
+                   // MessageReciever.Recieve(recievedResponses, bank.Host, ssn);
                     if (bank.Exchange.Contains("XML"))
                     { // XML Translator is used
                         var encodedMessage = UTF8Encoding.UTF8.GetBytes(XMLConverter.GetXMLFromLoanRequest(request));
-                        MessageSender.SendMessage(bank.Host, bank.Exchange, "HunndiXMLReplyQueue", encodedMessage);
+                        MessageSender.SendMessage(bank.Host, bank.Exchange, ssn, encodedMessage);
                     }
                     else if (bank.Exchange.Contains("JSON"))
                     { // JSON Translator is used
-                        var encodedMessage = UTF8Encoding.UTF8.GetBytes(JSONConverter.GetJSONFromRequest(request));
-                        MessageSender.SendMessage(bank.Host, bank.Exchange, "HunndiJSONReplyQueue", encodedMessage);
+                        //var encodedMessage = UTF8Encoding.UTF8.GetBytes(JSONConverter.GetJSONFromRequest(request));
+                        //MessageSender.SendMessage(bank.Host, bank.Exchange, ssn.ToString(), encodedMessage);
                     }
                 }
                 else
                 { // Use soap
-                    var encodedMessage = XMLConverter.GetXMLFromLoanRequest(request);
-                    DynamicSoapRequestHandler.SendRequestSoap(bank.Host,"RequestLoan", encodedMessage);
+                    var myResponse = DynamicSoapRequestHandler.SendSoapMessage(bank.Host, "RequestLoan", request).Result;
+                    recievedResponses.Add(myResponse);
                 }
             }
-
-            return "Hello World";
+            if (recipientList[0].Exchange!= null)
+            {
+                return recipientList[0].Exchange;
+            }
+            else
+            {
+                return recipientList[0].Host;
+            }
+            
         }
     }
 }

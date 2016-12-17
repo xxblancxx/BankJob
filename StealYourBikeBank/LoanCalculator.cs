@@ -4,16 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace StealYourBikeBank
 {
     public class LoanCalculator
     {
 
 
-        public static double CalculateCreditscore(int creditScore, double loanAmount, DateTime loanDuration)
+        public static double CalculateCreditscore(int creditScore, double loanAmount, string loanDuration)
         {
-            //string durationRaw = loanDuration.Remove(19);
-            var duration = loanDuration - new DateTime(1970, 01, 01, 01, 00, 00);
+            string durationRaw = loanDuration.Replace("CET", "").Trim();
+            var duration = Convert.ToDateTime(durationRaw) - new DateTime(1970, 01, 01, 01, 00, 00);
 
             if (duration.TotalDays < 0 || loanAmount < 0 || creditScore < 0)
             {
