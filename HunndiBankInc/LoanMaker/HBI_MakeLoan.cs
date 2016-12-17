@@ -17,7 +17,7 @@ namespace HunndiBankInc.MakeLoan
         public static double CalculateInterestRate(LoanRequest request)
         {
             string durationRaw = request.loanDuration.Replace("CET", "").Trim();
-            var duration = Convert.ToDateTime(durationRaw) - new DateTime(1970, 01, 01, 01, 00, 00);
+            var duration = Convert.ToDateTime(durationRaw) - new DateTime(1970, 01, 01);
 
             if (duration.TotalDays < 0 || request.loanAmount < 0 || request.creditScore < 0)
             {

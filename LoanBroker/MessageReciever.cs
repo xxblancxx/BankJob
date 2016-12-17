@@ -11,7 +11,6 @@ namespace LoanBroker
 {
     public class MessageReciever
     {
-        public EventingBasicConsumer Consumer { get; set; }
 
         public static void Recieve(List<string> recievedMessages, string host, string queue)
         {
@@ -31,20 +30,11 @@ namespace LoanBroker
 
                     var subscription = new Subscription(model, queue, true);
                     var result = new BasicDeliverEventArgs();
-                    subscription.Next(2000,out result);
+                    subscription.Next(2000, out result);
                     var body = result.Body;
                     var message = UTF8Encoding.UTF8.GetString(body);
 
                     recievedMessages.Add(message);
-                    //Consumer.Received += (model, ea) =>
-                    //{
-                    //    var body = ea.Body;
-                    //    var message = UTF8Encoding.UTF8.GetString(body);
-                    //    recievedMessages.Add(message);
-                    //};
-                    //string myConsumed =  channel.BasicConsume(queue: queue,
-                    //                     noAck: true,
-                    //                     consumer: Consumer);
                 }
             }
         }
