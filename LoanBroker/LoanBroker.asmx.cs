@@ -36,7 +36,7 @@ namespace LoanBroker
             // Creditscore always returns -1, so we implemented the below piece for test purposes
             //__________Below Code is just for test purpose____________________________________
             Random r = new Random();
-            creditScore = 450;/*r.Next(1, 800);*/
+            creditScore = r.Next(1, 800);
             //__________Above Code is just for test purpose____________________________________
 
             // Get Banks from rulebase
@@ -106,14 +106,28 @@ namespace LoanBroker
                 }
             }
 
-            if (recipientList[0].Exchange != null)
+            //Aggregate to find best rate.
+            LoanResponse bestResponse = null;
+            string bankName = "";
+            foreach (var response in responses)
             {
-                return recipientList[0].Exchange;
+                if (bestResponse == null)
+                {
+                    bestResponse = response.Value;
+                    bankName = response.Key;
+                }
+                else
+                {
+                    if (response.Value.interestRate < bestResponse.interestRate)
+                    {
+                        bestResponse = response.Value;
+                        bankName = response.Key;
+                    }
+                }
             }
-            else
-            {
-                return recipientList[0].Host;
-            }
+
+            string returnString = "The best option for a loan is offered by: " + bankName + ", who offer an interest rate of: " + bestResponse.interestRate + "%";
+            return returnString;
 
         }
     }
