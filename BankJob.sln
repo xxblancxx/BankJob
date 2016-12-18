@@ -5,11 +5,6 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuleBase", "RuleBase\RuleBase.csproj", "{EA7A73D6-9F7F-456C-8D53-4C915BB64162}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitTestClient", "RabbitTestClient\RabbitTestClient.csproj", "{29A8E7CC-08EE-4580-A62F-5FF72C1BF39C}"
-	ProjectSection(ProjectDependencies) = postProject
-		{9ADC7CEE-DA07-49EC-AB2C-F1B26A0B201E} = {9ADC7CEE-DA07-49EC-AB2C-F1B26A0B201E}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HunndiBankInc", "HunndiBankInc\HunndiBankInc.csproj", "{63C86C93-F1DC-408D-BC32-CAA0D1E9A9CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StealYourBikeBank", "StealYourBikeBank\StealYourBikeBank.csproj", "{9ADC7CEE-DA07-49EC-AB2C-F1B26A0B201E}"
@@ -26,10 +21,6 @@ Global
 		{EA7A73D6-9F7F-456C-8D53-4C915BB64162}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA7A73D6-9F7F-456C-8D53-4C915BB64162}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA7A73D6-9F7F-456C-8D53-4C915BB64162}.Release|Any CPU.Build.0 = Release|Any CPU
-		{29A8E7CC-08EE-4580-A62F-5FF72C1BF39C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{29A8E7CC-08EE-4580-A62F-5FF72C1BF39C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{29A8E7CC-08EE-4580-A62F-5FF72C1BF39C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{29A8E7CC-08EE-4580-A62F-5FF72C1BF39C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{63C86C93-F1DC-408D-BC32-CAA0D1E9A9CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{63C86C93-F1DC-408D-BC32-CAA0D1E9A9CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63C86C93-F1DC-408D-BC32-CAA0D1E9A9CE}.Release|Any CPU.ActiveCfg = Release|Any CPU

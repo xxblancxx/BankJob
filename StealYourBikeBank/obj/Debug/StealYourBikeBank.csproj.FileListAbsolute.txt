@@ -30,3 +30,4 @@ D:\Projects\BankJob\StealYourBikeBank\bin\Microsoft.ApplicationInsights.xml
 D:\Projects\BankJob\StealYourBikeBank\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Projects\BankJob\StealYourBikeBank\obj\Debug\StealYourBikeBank.dll
 D:\Projects\BankJob\StealYourBikeBank\obj\Debug\StealYourBikeBank.pdb
+D:\Projects\BankJob\StealYourBikeBank\obj\Debug\StealYourBikeBank.csprojResolveAssemblyReference.cache

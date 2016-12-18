@@ -9,6 +9,19 @@ namespace LoanBroker
 {
     public class JSONConverter
     {
+        public static LoanResponse GetResponseFromJSON(string recievedResponse)
+        {
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(LoanResponse));
+            // Read string into memorystream first, so JSONSerializer can read it as bytes
+            MemoryStream stream1 = new MemoryStream();
+            StreamWriter writer = new StreamWriter(stream1);
+            writer.Write(recievedResponse);
+            writer.Flush();
+            stream1.Position = 0; // Rest stream to first position, so we read from beginning.
+
+            LoanResponse handledRequest = (LoanResponse)ser.ReadObject(stream1);
+            return handledRequest;
+        }
         public static string GetJSONFromRequest(LoanRequest request)
         {
             MemoryStream stream1 = new MemoryStream();
@@ -28,7 +41,7 @@ namespace LoanBroker
             StreamReader sr = new StreamReader(stream1);
             string jsonRequest = sr.ReadToEnd();
             request.loanDuration = originalDurationString;
-            jsonRequest = jsonRequest.Replace(":\"", ":").Replace("\",", ",").Replace("\"}","}") ;
+            jsonRequest = jsonRequest.Replace(":\"", ":").Replace("\",", ",").Replace("\"}", "}");
             return jsonRequest;
         }
     }

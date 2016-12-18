@@ -40,7 +40,7 @@ namespace LoanBroker
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
-                channel.QueueDeclare(replyto, false, false, false, null);
+                channel.QueueDeclare(replyto, false, false, true, null);
             }
         }
     }

@@ -23,8 +23,9 @@ namespace LoanBroker
         [WebMethod]
         public string RequestLoan(string ssn, bool isInRKI, double loanAmount, int loanDurationInDays)
         {
-            List<string> recievedResponses = new List<string>();
-            
+            Dictionary<string, string> recievedResponses = new Dictionary<string, string>();
+
+
             DateTime loanDuration = new DateTime(1970, 01, 01);
             loanDuration = loanDuration.AddDays(loanDurationInDays);
 
@@ -35,7 +36,7 @@ namespace LoanBroker
             // Creditscore always returns -1, so we implemented the below piece for test purposes
             //__________Below Code is just for test purpose____________________________________
             Random r = new Random();
-            creditScore = r.Next(1, 800);
+            creditScore = 450;/*r.Next(1, 800);*/
             //__________Above Code is just for test purpose____________________________________
 
             // Get Banks from rulebase
@@ -45,34 +46,66 @@ namespace LoanBroker
             var request = new LoanRequest(ssn, creditScore, loanAmount, loanDuration);
 
             // Translate and send.
-            
+
             foreach (var bank in recipientList)
             {
-                
+                string queueForBank = ssn + "." + bank.Name;
+
                 if (bank.UsesMessaging)
                 { // Use AMQP Messaging protocol (RabbitMQ broker)
-                    MessageSender.DeclareQueue(bank.Host, ssn);
+                    MessageSender.DeclareQueue(bank.Host, queueForBank);
+
                     if (bank.Exchange.Contains("XML"))
                     { // XML Translator is used
                         var encodedMessage = UTF8Encoding.UTF8.GetBytes(XMLConverter.GetXMLFromLoanRequest(request));
-                        MessageSender.SendMessage(bank.Host, bank.Exchange, ssn, encodedMessage);
+                        MessageSender.SendMessage(bank.Host, bank.Exchange, queueForBank, encodedMessage);
                     }
                     else if (bank.Exchange.Contains("JSON"))
                     { // JSON Translator is used
                         string json = JSONConverter.GetJSONFromRequest(request);
                         var encodedMessage = UTF8Encoding.UTF8.GetBytes(json);
-                        MessageSender.SendMessage(bank.Host, bank.Exchange, ssn.ToString(), encodedMessage);
+                        MessageSender.SendMessage(bank.Host, bank.Exchange, queueForBank, encodedMessage);
                     }
-
-                   MessageReciever.Recieve(recievedResponses, bank.Host, ssn);
                 }
                 else
-                { // Use soap
+                { // Use http request to contact soap webservice.
                     var myResponse = DynamicSoapRequestHandler.SendSoapMessage(bank.Host, "RequestLoan", request).Result;
-                    recievedResponses.Add(myResponse);
+                    recievedResponses.Add(bank.Name, myResponse);
                 }
-
             }
+
+            // Recieve messages
+            foreach (var bank in recipientList)
+            {
+                if (bank.UsesMessaging)
+                {
+                    string queueForBank = ssn + "." + bank.Name;
+                    string response = MessageReciever.Recieve(bank.Host, queueForBank);
+                    recievedResponses.Add(bank.Name, response);
+                }
+            }
+
+            // Normalize
+            // Uses translators to LoanResponse objects
+
+            Dictionary<string, LoanResponse> responses = new Dictionary<string, LoanResponse>();
+
+            foreach (var response in recievedResponses)
+            {
+                // Look for XML style closing tag
+                if (response.Value.Contains("</"))
+                { // its XML
+                    var loanResponse = XMLConverter.GetResponseFromXML(response.Value);
+                    responses.Add(response.Key, loanResponse);
+                }
+                // Look for JSON style closing tag
+                else if (response.Value.Contains("}"))
+                { // its JSON
+                    var loanResponse = JSONConverter.GetResponseFromJSON(response.Value);
+                    responses.Add(response.Key, loanResponse);
+                }
+            }
+
             if (recipientList[0].Exchange != null)
             {
                 return recipientList[0].Exchange;

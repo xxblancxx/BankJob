@@ -12,7 +12,7 @@ namespace LoanBroker
     public class MessageReciever
     {
 
-        public static void Recieve(List<string> recievedMessages, string host, string queue)
+        public static string Recieve(string host, string queue)
         {
             var factory = new ConnectionFactory() { HostName = host };
             using (var connection = factory.CreateConnection())
@@ -20,21 +20,29 @@ namespace LoanBroker
             {
                 using (IModel model = connection.CreateModel())
                 {
+                    // Create or use existing queue
                     channel.QueueDeclare(queue: queue,
                                      durable: false,
                                      exclusive: false,
-                                     autoDelete: false,
+                                     autoDelete: true,
                                      arguments: null);
 
-                    //var result = channel.BasicGet(queue: queue, noAck: true);
-
+                    // Create subscription that can look for message in queue.
                     var subscription = new Subscription(model, queue, true);
-                    var result = new BasicDeliverEventArgs();
-                    subscription.Next(2000, out result);
-                    var body = result.Body;
-                    var message = UTF8Encoding.UTF8.GetString(body);
+                    var result = new BasicDeliverEventArgs(); // Output is held in this variable.
 
-                    recievedMessages.Add(message);
+                    // Subscription waits for next incoming message, timeout is set to 2000ms
+                    subscription.Next(2000, out result);
+                    if (result != null)
+                    {
+                        var body = result.Body;
+                        var message = UTF8Encoding.UTF8.GetString(body);
+                        return message;
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
             }
         }

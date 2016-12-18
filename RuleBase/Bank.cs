@@ -9,6 +9,7 @@ namespace RuleBase
     public class Bank
     {
         private string _exchange;
+        public string Name { get; set; }
         public int MinimumCreditscore { get; set; }
         public int MaximumCreditscore { get; set; }
         public double MaximumAmount { get; set; }
@@ -36,9 +37,10 @@ namespace RuleBase
         }
 
 
-        public Bank(int minimumCreditscore, double maxLoan, DateTime maxDuration, bool allowsRKI, string host)
+        public Bank(string name, int minimumCreditscore, double maxLoan, DateTime maxDuration, bool allowsRKI, string host)
         {
             // This is webservice bank.
+            Name = name;
             UsesMessaging = false;
             MaximumDuration = maxDuration;
             MinimumCreditscore = minimumCreditscore;
@@ -48,9 +50,10 @@ namespace RuleBase
             Host = host;
         }
 
-        public Bank(int minimumCreditscore, double maxLoan,  DateTime maxDuration, bool allowsRKI, string host, string exchange)
+        public Bank(string name, int minimumCreditscore, double maxLoan,  DateTime maxDuration, bool allowsRKI, string host, string exchange)
         {
             // This is RabbitMQ bank.
+            Name = name;
             UsesMessaging = true;
 
             MinimumCreditscore = minimumCreditscore;
@@ -60,11 +63,11 @@ namespace RuleBase
             Host = host;
             Exchange = exchange;
         }
-        public Bank(int minimumCreditscore, int maximumCreditscore, DateTime maxDuration, double maxLoan, bool allowsRKI, string host)
+        public Bank(string name, int minimumCreditscore, int maximumCreditscore, DateTime maxDuration, double maxLoan, bool allowsRKI, string host)
         {
             // This is webservice bank.
             UsesMessaging = false;
-
+            Name = name;
             MinimumCreditscore = minimumCreditscore;
             MaximumCreditscore = maximumCreditscore;
             MaximumAmount = maxLoan;
@@ -72,11 +75,11 @@ namespace RuleBase
             Host = host;
         }
 
-        public Bank(int minimumCreditscore,int maximumCreditscore, DateTime maxDuration, double maxLoan, bool allowsRKI, string host, string exchange)
+        public Bank(string name, int minimumCreditscore,int maximumCreditscore, DateTime maxDuration, double maxLoan, bool allowsRKI, string host, string exchange)
         {
             // This is RabbitMQ bank.
             UsesMessaging = true;
-
+            Name = name;
             MinimumCreditscore = minimumCreditscore;
             MaximumCreditscore = maximumCreditscore;
             MaximumAmount = maxLoan;

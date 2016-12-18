@@ -11,16 +11,16 @@ namespace StealYourBikeBank
     {
 
         public string ssn;
-        public double intRate;
+        public double interestRate;
 
         public LoanResponse()
         {
 
         }
-        public LoanResponse(string ssn, double intRate)
+        public LoanResponse(string ssn, double interestRate)
         {
             this.ssn = ssn;
-            this.intRate = intRate;
+            this.interestRate = interestRate;
         }
     }
 }

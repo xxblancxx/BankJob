@@ -18,7 +18,7 @@ namespace HunndiBankInc
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
-                channel.QueueDeclare(replyTo, false, false, false, null);
+                channel.QueueDeclare(replyTo, false, false,true, null);
 
                 channel.BasicPublish(exchange: "",
                                 routingKey: replyTo, 

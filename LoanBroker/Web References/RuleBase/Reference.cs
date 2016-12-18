@@ -134,6 +134,8 @@ namespace LoanBroker.RuleBase {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://localhost/")]
     public partial class Bank {
         
+        private string nameField;
+        
         private int minimumCreditscoreField;
         
         private int maximumCreditscoreField;
@@ -149,6 +151,16 @@ namespace LoanBroker.RuleBase {
         private bool usesMessagingField;
         
         private string exchangeField;
+        
+        /// <remarks/>
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
         
         /// <remarks/>
         public int MinimumCreditscore {
