@@ -41,7 +41,7 @@ namespace LoanBroker
             StreamReader sr = new StreamReader(stream1);
             string jsonRequest = sr.ReadToEnd();
             request.loanDuration = originalDurationString;
-            jsonRequest = jsonRequest.Replace(":\"", ":").Replace("\",", ",").Replace("\"}", "}");
+            //jsonRequest = jsonRequest.Replace(":\"", ":").Replace("\",", ",").Replace("\"}", "}");
             return jsonRequest;
         }
     }

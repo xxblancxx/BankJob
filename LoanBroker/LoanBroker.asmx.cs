@@ -24,7 +24,10 @@ namespace LoanBroker
         public string RequestLoan(string ssn, bool isInRKI, double loanAmount, int loanDurationInDays)
         {
             Dictionary<string, string> recievedResponses = new Dictionary<string, string>();
-
+            if (ssn.Length != 11 && ssn[6]!='-')
+            {
+                return "ssn MUST be in the format XXXXXX-XXXX";
+            }
 
             DateTime loanDuration = new DateTime(1970, 01, 01);
             loanDuration = loanDuration.AddDays(loanDurationInDays);
@@ -32,12 +35,7 @@ namespace LoanBroker
             // Get Creditscore from webservice
             var creditBureau = new CreditBureau.CreditScoreService();
             int creditScore = creditBureau.creditScore(ssn);
-
-            // Creditscore always returns -1, so we implemented the below piece for test purposes
-            //__________Below Code is just for test purpose____________________________________
-            Random r = new Random();
-            creditScore = r.Next(1, 800);
-            //__________Above Code is just for test purpose____________________________________
+            ssn = ssn.Replace("-","");
 
             // Get Banks from rulebase
             var rulebase = new RuleBase.RuleBase();
@@ -86,49 +84,12 @@ namespace LoanBroker
             }
 
             // Normalize
-            // Uses translators to LoanResponse objects
-
-            Dictionary<string, LoanResponse> responses = new Dictionary<string, LoanResponse>();
-
-            foreach (var response in recievedResponses)
-            {
-                // Look for XML style closing tag
-                if (response.Value.Contains("</"))
-                { // its XML
-                    var loanResponse = XMLConverter.GetResponseFromXML(response.Value);
-                    responses.Add(response.Key, loanResponse);
-                }
-                // Look for JSON style closing tag
-                else if (response.Value.Contains("}"))
-                { // its JSON
-                    var loanResponse = JSONConverter.GetResponseFromJSON(response.Value);
-                    responses.Add(response.Key, loanResponse);
-                }
-            }
+            Dictionary<string, LoanResponse> responses = Normalizer.Normalize(recievedResponses); // Uses translators to get LoanResponse objects
 
             //Aggregate to find best rate.
-            LoanResponse bestResponse = null;
-            string bankName = "";
-            foreach (var response in responses)
-            {
-                if (bestResponse == null)
-                {
-                    bestResponse = response.Value;
-                    bankName = response.Key;
-                }
-                else
-                {
-                    if (response.Value.interestRate < bestResponse.interestRate)
-                    {
-                        bestResponse = response.Value;
-                        bankName = response.Key;
-                    }
-                }
-            }
+            string bestInterestInformation = Aggregator.FindBestInterestRate(responses);
 
-            string returnString = "The best option for a loan is offered by: " + bankName + ", who offer an interest rate of: " + bestResponse.interestRate + "%";
-            return returnString;
-
+            return bestInterestInformation;
         }
     }
 }
