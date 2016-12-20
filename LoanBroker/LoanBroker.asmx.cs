@@ -40,7 +40,10 @@ namespace LoanBroker
             // Get Banks from rulebase
             var rulebase = new RuleBase.RuleBase();
             var recipientList = rulebase.GetBanks(creditScore, isInRKI, loanAmount, loanDuration).ToList();
-
+            if (recipientList.Count == 0)
+            {
+                return "No suitable banks :(";
+            }
             var request = new LoanRequest(ssn, creditScore, loanAmount, loanDuration);
 
             // Translate and send.
@@ -82,7 +85,10 @@ namespace LoanBroker
                     recievedResponses.Add(bank.Name, response);
                 }
             }
-
+            if (recievedResponses.Count == 0)
+            {
+               return "No banks responded. This could be a connection error!";
+            }
             // Normalize
             Dictionary<string, LoanResponse> responses = Normalizer.Normalize(recievedResponses); // Uses translators to get LoanResponse objects
 

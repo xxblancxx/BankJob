@@ -31,6 +31,8 @@ namespace LoanBroker.RuleBase {
         
         private System.Threading.SendOrPostCallback GetBanksOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetAllBankInformationForTestingOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -73,6 +75,9 @@ namespace LoanBroker.RuleBase {
         public event GetBanksCompletedEventHandler GetBanksCompleted;
         
         /// <remarks/>
+        public event GetAllBankInformationForTestingCompletedEventHandler GetAllBankInformationForTestingCompleted;
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://localhost/GetBanks", RequestNamespace="http://localhost/", ResponseNamespace="http://localhost/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public Bank[] GetBanks(int creditscore, bool isInRKI, double amount, System.DateTime loanDuration) {
             object[] results = this.Invoke("GetBanks", new object[] {
@@ -104,6 +109,33 @@ namespace LoanBroker.RuleBase {
             if ((this.GetBanksCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetBanksCompleted(this, new GetBanksCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://localhost/GetAllBankInformationForTesting", RequestNamespace="http://localhost/", ResponseNamespace="http://localhost/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Bank[] GetAllBankInformationForTesting() {
+            object[] results = this.Invoke("GetAllBankInformationForTesting", new object[0]);
+            return ((Bank[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetAllBankInformationForTestingAsync() {
+            this.GetAllBankInformationForTestingAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetAllBankInformationForTestingAsync(object userState) {
+            if ((this.GetAllBankInformationForTestingOperationCompleted == null)) {
+                this.GetAllBankInformationForTestingOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAllBankInformationForTestingOperationCompleted);
+            }
+            this.InvokeAsync("GetAllBankInformationForTesting", new object[0], this.GetAllBankInformationForTestingOperationCompleted, userState);
+        }
+        
+        private void OnGetAllBankInformationForTestingOperationCompleted(object arg) {
+            if ((this.GetAllBankInformationForTestingCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetAllBankInformationForTestingCompleted(this, new GetAllBankInformationForTestingCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -256,6 +288,32 @@ namespace LoanBroker.RuleBase {
         private object[] results;
         
         internal GetBanksCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Bank[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Bank[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void GetAllBankInformationForTestingCompletedEventHandler(object sender, GetAllBankInformationForTestingCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAllBankInformationForTestingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAllBankInformationForTestingCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

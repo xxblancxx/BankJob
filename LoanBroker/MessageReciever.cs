@@ -46,5 +46,40 @@ namespace LoanBroker
                 }
             }
         }
+
+        public static string RecieveSpecifiedTimeout(string host, string queue, int timeoutInMilliseconds)
+        {
+            var factory = new ConnectionFactory() { HostName = host };
+            using (var connection = factory.CreateConnection())
+            using (var channel = connection.CreateModel())
+            {
+                using (IModel model = connection.CreateModel())
+                {
+                    // Create or use existing queue
+                    channel.QueueDeclare(queue: queue,
+                                     durable: false,
+                                     exclusive: false,
+                                     autoDelete: true,
+                                     arguments: null);
+
+                    // Create subscription that can look for message in queue.
+                    var subscription = new Subscription(model, queue, true);
+                    var result = new BasicDeliverEventArgs(); // Output is held in this variable.
+
+                    // Subscription waits for next incoming message, timeout is set to 2000ms
+                    subscription.Next(timeoutInMilliseconds, out result);
+                    if (result != null)
+                    {
+                        var body = result.Body;
+                        var message = UTF8Encoding.UTF8.GetString(body);
+                        return message;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+        }
     }
 }

@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 namespace LoanBroker
 {
-    class XMLConverter
+   public class XMLConverter
     {
         public static LoanResponse GetResponseFromXML(string recievedResponse)
         {

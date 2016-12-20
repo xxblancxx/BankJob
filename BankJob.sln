@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StealYourBikeBank", "StealY
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanBroker", "LoanBroker\LoanBroker.csproj", "{5961EDD1-9A02-4E26-8FB8-41850D014A39}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanBrokerTests", "LoanBrokerTests\LoanBrokerTests.csproj", "{F9866DB3-0209-4393-92F5-05857EC328F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5961EDD1-9A02-4E26-8FB8-41850D014A39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5961EDD1-9A02-4E26-8FB8-41850D014A39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5961EDD1-9A02-4E26-8FB8-41850D014A39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9866DB3-0209-4393-92F5-05857EC328F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9866DB3-0209-4393-92F5-05857EC328F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9866DB3-0209-4393-92F5-05857EC328F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9866DB3-0209-4393-92F5-05857EC328F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

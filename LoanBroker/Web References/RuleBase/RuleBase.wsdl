@@ -37,6 +37,16 @@
           <s:element minOccurs="0" maxOccurs="1" name="Exchange" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="GetAllBankInformationForTesting">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllBankInformationForTestingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllBankInformationForTestingResult" type="tns:ArrayOfBank" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GetBanksSoapIn">
@@ -45,10 +55,20 @@
   <wsdl:message name="GetBanksSoapOut">
     <wsdl:part name="parameters" element="tns:GetBanksResponse" />
   </wsdl:message>
+  <wsdl:message name="GetAllBankInformationForTestingSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllBankInformationForTesting" />
+  </wsdl:message>
+  <wsdl:message name="GetAllBankInformationForTestingSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllBankInformationForTestingResponse" />
+  </wsdl:message>
   <wsdl:portType name="RuleBaseSoap">
     <wsdl:operation name="GetBanks">
       <wsdl:input message="tns:GetBanksSoapIn" />
       <wsdl:output message="tns:GetBanksSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBankInformationForTesting">
+      <wsdl:input message="tns:GetAllBankInformationForTestingSoapIn" />
+      <wsdl:output message="tns:GetAllBankInformationForTestingSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="RuleBaseSoap" type="tns:RuleBaseSoap">
@@ -62,11 +82,29 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllBankInformationForTesting">
+      <soap:operation soapAction="http://localhost/GetAllBankInformationForTesting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="RuleBaseSoap12" type="tns:RuleBaseSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetBanks">
       <soap12:operation soapAction="http://localhost/GetBanks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBankInformationForTesting">
+      <soap12:operation soapAction="http://localhost/GetAllBankInformationForTesting" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
